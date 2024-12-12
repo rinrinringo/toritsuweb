@@ -1,0 +1,14 @@
+<h1>GeekTwitter</h1>
+<h3>授業口コミ一覧</h3>
+<%= link_to "新規投稿へ", calls_new_path %>
+<div class="calls-container">
+  <% @calls.each do |t| %>
+  <div class="call">
+  <%= t.user.email %>
+    <%= t.word %>
+    <%= t.created_at %>
+    <%= link_to "詳細へ", call_path(t.id) %> 
+    <%= button_to "削除する", call_path(t.id), method: :delete %> 
+  </div>
+  <% end %>
+</div>

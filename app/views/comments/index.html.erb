@@ -1,0 +1,14 @@
+<h1>GeekTwitter</h1>
+<h3>時間割口コミ一覧</h3>
+<%= link_to "新規投稿へ", comments_new_path %>
+<div class="comments-container">
+  <% @comments.each do |t| %>
+  <div class="tweet">
+  <%= t.user.email %>
+    <%= t.body %>
+    <%= t.created_at %>
+    <%= link_to "詳細へ", comment_path(t.id) %> 
+    <%= button_to "削除する", vomment_path(t.id), method: :delete %>
+  </div>
+  <% end %>
+</div>

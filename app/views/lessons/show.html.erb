@@ -1,0 +1,9 @@
+<h1>GeekTwitter</h1>
+<h3>授業詳細</h3>
+<div class="lesson">
+  <p><%= @lesson.jugyou %></p>
+  <p><%= @lesson.repo %></p>
+  <p><%= @lesson.created_at %></p>
+</div>
+
+<%= link_to "授業一覧に戻る", lessons_path %>

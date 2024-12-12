@@ -1,0 +1,120 @@
+
+
+<div class="title-container">
+<p>履修の執事</p>
+<h2>一覧ページ</h2>
+<h3>授業時間割を検索</h3>
+
+<%= form_tag({controller:"tweets",action:"index"}, method: :get) do %>
+  <% Tag.all.each do |t| %>
+    <li><%= check_box :tag_ids, t.name %><%= t.name %></li>
+  <% end %>
+
+
+<%= form_tag({controller:"tweets",action:"index"}, method: :get) do %>
+  <%= text_field_tag :search %>
+<% end %>
+
+  <%= submit_tag '検索' %>
+<% end %>
+
+<%= link_to "新規投稿へ", new_tweet_path %>
+
+<h1>いいねランキング</h1>
+<% @rank_tweets.each do |t| %>
+  <div class="tweet">
+    <% if t.image.attached? %>
+      <%= image_tag t.image, size: '250x200'%>
+    <% end %>
+    <%= t.created_at %>
+    <%= t.user.email %>
+    <%= t.gakubu %>
+    <%= t.gakunen %>
+    <%= t.gakki %>
+    <%= t.memo %>
+  </div>
+  <h2>単位取得度：
+    <span class="star-rating">
+      <span class="star-rating-front" style="width: <%= getPercent(t.overall) %>%;">★★★★★</span>
+      <span class="star-rating-back">★★★★★</span>
+    </span> 
+  </h2>
+
+  <div>
+    <h2>時間的余裕：
+      <span class="star-rating">
+        <span class="star-rating-front" style="width: <%= getPercent(t.level) %>%;">★★★★★</span>
+        <span class="star-rating-back">★★★★★</span>
+      </span>
+    </h2>
+  </div>
+  <% if user_signed_in? %>
+    <% if current_user.already_liked?(t) %>
+      <%= button_to tweet_like_path(id: t.id, tweet_id: t.id), method: :delete do %>
+        <i class="fas fa-heart"></i><%= t.likes.count %>
+      <% end %>
+    <% else %>
+      <%= link_to tweet_likes_path(id: t.id, tweet_id: t.id), method: :post do %>
+        <i class="far fa-heart"></i><%= t.likes.count %>
+      <% end %>
+    <% end %>
+  <% else %>
+      <i class="far fa-heart"></i><%= t.likes.count %>
+  <% end %>
+    <%= link_to "詳細へ", tweet_path(t.id) %>
+    <%= button_to "削除する", tweet_path(t.id), method: :delete %>
+  </div>  
+<% end %>
+#授業時間割一覧
+<div class="tweets-container">
+  <% @tweets.each do |t| %>
+    <div class="tweet">
+    <% if t.image.attached? %>
+      <%= image_tag t.image, size: '250x200'%>
+    <% end %>
+    <%= t.created_at %>
+    <%= t.user.email %>
+    <%= t.gakubu %>
+    <%= t.gakunen %>
+    <%= t.gakki %>
+    <%= t.memo %>
+    <div>
+      <h2>単位取得度：
+      <span class="star-rating">
+          <span class="star-rating-front" style="width: <%= getPercent(t.overall) %>%;">★★★★★</span>
+          <span class="star-rating-back">★★★★★</span>
+      </span> 
+      </h2>
+    </div>
+    <div>
+      <h2>時間的余裕：
+      <span class="star-rating">
+        <span class="star-rating-front" style="width: <%= getPercent(t.level) %>%;">★★★★★</span>
+        <span class="star-rating-back">★★★★★</span>
+      </span>
+      </h2>
+    </div>
+    <% if user_signed_in? %>
+      <% if current_user.already_liked?(t) %>
+        <%= button_to tweet_like_path(id: t.id, tweet_id: t.id), method: :delete do %>
+            <i class="fas fa-heart"></i><%= t.likes.count %>
+        <% end %>
+      <% else %>
+        <%= link_to tweet_likes_path(id: t.id, tweet_id: t.id), method: :post do %>
+            <i class="far fa-heart"></i><%= t.likes.count %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <i class="far fa-heart"></i><%= t.likes.count %>
+    <% end %>
+    <%= link_to "詳細へ", tweet_path(t.id) %>
+    <%= button_to "削除する", tweet_path(t.id), method: :delete %>
+  <% end %>
+</div>
+
+
+<%= link_to "授業一覧に戻る", lessons_path %>
+
+
+
+

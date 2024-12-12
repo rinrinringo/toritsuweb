@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  gakubu: MyString
+  gakunen: MyString
+  gakki: MyString
+  memo: MyText
+
+two:
+  gakubu: MyString
+  gakunen: MyString
+  gakki: MyString
+  memo: MyText

@@ -1,0 +1,14 @@
+<h1>(授業口コミ)</h1>
+<h3>新規投稿ページ</h3>
+<%= form_for @call do |f| %>
+
+# データ型がtextで自由記述の入力フォーム
+  <div class="field">
+    <%= f.label :口コミ  %>
+    <%= f.text_area :word, :size => "30x2" %>
+  </div>
+
+  <%= f.submit "投稿する" %>
+<% end %>
+
+<%= link_to "一覧に戻る", コントローラー名_path %>
