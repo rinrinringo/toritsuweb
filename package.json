@@ -12,11 +12,13 @@
   },
   "version": "0.1.0",
   "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "babel-loader": "^8.4.1",
     "webpack-dev-server": "3"
   },
-"engines": {
-  "node": "16.20.0",
-  "npm": "8.19.4"
+  "engines": {
+    "node": "16.20.0",
+    "npm": "8.19.4"
+  }
 }
-}
-
