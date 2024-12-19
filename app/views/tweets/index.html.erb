@@ -1,120 +1,135 @@
 
 
-<div class="title-container">
-<p>履修の執事</p>
-<h2>一覧ページ</h2>
-<h3>授業時間割を検索</h3>
+<div class="back-container">
+  <p class="aa">都立大情報局</p>
+  <div class="img-frame">
+    <%= image_tag 'tmu.jpg', alt: 'tmu', class: 'img-01' %>
+    <%= image_tag 'Disney.jpg', alt: 'tmu', class: 'img-02' %>
+    <%= image_tag 'seimon.jpg', alt: 'tmu', class: 'img-03' %>
+    <%= image_tag 'iwa.jpg', alt: 'tmu', class: 'img-04' %>
+    <%= image_tag 'sibuya.jpg', alt: 'tmu', class: 'img-05' %>
+  </div>
+</div>  
 
-<%= form_tag({controller:"tweets",action:"index"}, method: :get) do %>
-  <% Tag.all.each do |t| %>
-    <li><%= check_box :tag_ids, t.name %><%= t.name %></li>
+<div class="title-container">  
+  <h1>授業時間割を検索</h1>
+
+  <ul class="tag-list">
+    <% Tag.all.each do |t| %>
+      <li class="tag-item">
+        <%= check_box_tag "tag_ids[]", t.id, false, class: "tag-checkbox" %>
+        <label class="tag-label"><%= t.name %></label>
+      </li>
+    <% end %>
+  </ul>
+
+  <%= form_tag({controller: "tweets", action: "index"}, method: :get, class: "search-form") do %>
+    <%= text_field_tag :search, nil, placeholder: "検索ワードを入力", class: "search-input" %>
+    <%= submit_tag '検索', class: "search-button" %>
   <% end %>
 
 
-<%= form_tag({controller:"tweets",action:"index"}, method: :get) do %>
-  <%= text_field_tag :search %>
-<% end %>
+  <%= link_to "新規投稿へ", new_tweet_path, class: "news-post-link" %>
 
-  <%= submit_tag '検索' %>
-<% end %>
-
-<%= link_to "新規投稿へ", new_tweet_path %>
-
-<h1>いいねランキング</h1>
-<% @rank_tweets.each do |t| %>
-  <div class="tweet">
-    <% if t.image.attached? %>
-      <%= image_tag t.image, size: '250x200'%>
-    <% end %>
-    <%= t.created_at %>
-    <%= t.user.email %>
-    <%= t.gakubu %>
-    <%= t.gakunen %>
-    <%= t.gakki %>
-    <%= t.memo %>
-  </div>
-  <h2>単位取得度：
-    <span class="star-rating">
-      <span class="star-rating-front" style="width: <%= getPercent(t.overall) %>%;">★★★★★</span>
-      <span class="star-rating-back">★★★★★</span>
-    </span> 
-  </h2>
-
-  <div>
-    <h2>時間的余裕：
-      <span class="star-rating">
-        <span class="star-rating-front" style="width: <%= getPercent(t.level) %>%;">★★★★★</span>
-        <span class="star-rating-back">★★★★★</span>
-      </span>
-    </h2>
-  </div>
-  <% if user_signed_in? %>
-    <% if current_user.already_liked?(t) %>
-      <%= button_to tweet_like_path(id: t.id, tweet_id: t.id), method: :delete do %>
-        <i class="fas fa-heart"></i><%= t.likes.count %>
-      <% end %>
-    <% else %>
-      <%= link_to tweet_likes_path(id: t.id, tweet_id: t.id), method: :post do %>
-        <i class="far fa-heart"></i><%= t.likes.count %>
-      <% end %>
-    <% end %>
-  <% else %>
-      <i class="far fa-heart"></i><%= t.likes.count %>
-  <% end %>
-    <%= link_to "詳細へ", tweet_path(t.id) %>
-    <%= button_to "削除する", tweet_path(t.id), method: :delete %>
-  </div>  
-<% end %>
-#授業時間割一覧
-<div class="tweets-container">
-  <% @tweets.each do |t| %>
-    <div class="tweet">
-    <% if t.image.attached? %>
-      <%= image_tag t.image, size: '250x200'%>
-    <% end %>
-    <%= t.created_at %>
-    <%= t.user.email %>
-    <%= t.gakubu %>
-    <%= t.gakunen %>
-    <%= t.gakki %>
-    <%= t.memo %>
-    <div>
-      <h2>単位取得度：
-      <span class="star-rating">
-          <span class="star-rating-front" style="width: <%= getPercent(t.overall) %>%;">★★★★★</span>
-          <span class="star-rating-back">★★★★★</span>
-      </span> 
-      </h2>
-    </div>
-    <div>
-      <h2>時間的余裕：
-      <span class="star-rating">
-        <span class="star-rating-front" style="width: <%= getPercent(t.level) %>%;">★★★★★</span>
-        <span class="star-rating-back">★★★★★</span>
-      </span>
-      </h2>
-    </div>
-    <% if user_signed_in? %>
-      <% if current_user.already_liked?(t) %>
-        <%= button_to tweet_like_path(id: t.id, tweet_id: t.id), method: :delete do %>
-            <i class="fas fa-heart"></i><%= t.likes.count %>
+  <div class="tweet-all">
+  <% if @rank_tweets %>
+    <h1>いいねランキング</h1>
+    <% @rank_tweets.each do |t| %>
+      <div class="tweet">
+        <% if t.image.attached? %>
+          <%= image_tag t.image, size: '250x200'%>
         <% end %>
-      <% else %>
-        <%= link_to tweet_likes_path(id: t.id, tweet_id: t.id), method: :post do %>
+        <%= t.created_at %>
+        <%= t.user.email %>
+        <%= t.gakubu %>
+        <%= t.gakunen %>
+        <%= t.gakki %>
+        <%= t.memo %>
+      
+        <h2>単位取得度：
+          <span class="star-rating">
+            <span class="star-rating-front" style="width: <%= getPercent(t.overall) %>%;">★★★★★</span>
+            <span class="star-rating-back">★★★★★</span>
+          </span> 
+        </h2>
+
+        <h2>時間的余裕：
+          <span class="star-rating">
+            <span class="star-rating-front" style="width: <%= getPercent(t.level) %>%;">★★★★★</span>
+            <span class="star-rating-back">★★★★★</span>
+          </span>
+        </h2>
+        
+        <% if user_signed_in? %>
+            <% if current_user.already_liked?(t) %>
+              <%= button_to tweet_like_path(id: t.id, tweet_id: t.id), method: :delete do %>
+                  <i class="fas fa-heart"></i><%= t.likes.count %>
+              <% end %>
+            <% else %>
+              <%= link_to tweet_likes_path(id: t.id, tweet_id: t.id), method: :post do %>
+                  <i class="far fa-heart"></i><%= t.likes.count %>
+              <% end %>
+            <% end %>
+          <% else %>
             <i class="far fa-heart"></i><%= t.likes.count %>
-        <% end %>
+          <% end %>
+          <%= link_to "詳細へ", tweet_path(t.id) %>
+          <%= button_to "削除する", tweet_path(t.id), method: :delete %>
+          <% end %>
+        <% else %>
+      </div>
+    
+
+    <h1>授業時間割一覧</h1>
+    <div class="tweets-container">
+      <% @tweets.each do |t| %>
+        <div class="tweet">
+          <% if t.image.attached? %>
+            <%= image_tag t.image, size: '250x200'%>
+          <% end %>
+          <%= t.created_at %>
+          <%= t.user.email %>
+          <%= t.gakubu %>
+          <%= t.gakunen %>
+          <%= t.gakki %>
+          <%= t.memo %>
+          
+          <h2>単位取得度：
+          <span class="star-rating">
+              <span class="star-rating-front" style="width: <%= getPercent(t.overall) %>%;">★★★★★</span>
+              <span class="star-rating-back">★★★★★</span>
+          </span> 
+          </h2>
+          
+          <h2>時間的余裕：
+          <span class="star-rating">
+            <span class="star-rating-front" style="width: <%= getPercent(t.level) %>%;">★★★★★</span>
+            <span class="star-rating-back">★★★★★</span>
+          </span>
+          </h2>
+        
+          <% if user_signed_in? %>
+            <% if current_user.already_liked?(t) %>
+              <%= button_to tweet_like_path(id: t.id, tweet_id: t.id), method: :delete do %>
+                  <i class="fas fa-heart"></i><%= t.likes.count %>
+              <% end %>
+            <% else %>
+              <%= link_to tweet_likes_path(id: t.id, tweet_id: t.id), method: :post do %>
+                  <i class="far fa-heart"></i><%= t.likes.count %>
+              <% end %>
+            <% end %>
+          <% else %>
+            <i class="far fa-heart"></i><%= t.likes.count %>
+          <% end %>
+          <%= link_to "詳細へ", tweet_path(t.id) %>
+          <%= button_to "削除する", tweet_path(t.id), method: :delete %>
+          <% end %>
+        </div>
       <% end %>
-    <% else %>
-      <i class="far fa-heart"></i><%= t.likes.count %>
-    <% end %>
-    <%= link_to "詳細へ", tweet_path(t.id) %>
-    <%= button_to "削除する", tweet_path(t.id), method: :delete %>
-  <% end %>
-</div>
+    </div>
+  </div>
 
-
-<%= link_to "授業一覧に戻る", lessons_path %>
-
-
+  </div>
+  </div>
 
 

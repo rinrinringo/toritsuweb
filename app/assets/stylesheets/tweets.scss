@@ -1,107 +1,327 @@
 // Place all the styles related to the tweets controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+// top.scss
 .tweet_form{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    width: 300px;
-    margin: 30px;
-    
-  }
-  .name_field{
-    width: 200px;
-    margin-bottom: 300px;
-    color: aqua;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 300px;
+  margin: 30px;
+  
+}
+.name_field{
+  width: 200px;
+  margin-bottom: 300px;
+  color: aqua;
+}
 
 /*　以下新規投稿ページの星用のCSS　*/
 
-  .post_form{
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: flex-end;
-  }
-  .post_form input[type='radio']{
-    display: none;
-  }
-  .post_form label{
-    position: relative;
-    padding: 10px 10px 0;
-    color: gray;
-    cursor: pointer;
-    font-size: 30px; /*星の大きさを変更するときはここ*/
-  }
-  .post_form label .text{
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    text-align: center;
-    font-size: 9px; /*星の上の説明書きの大きさを変更するときはここ*/
-    color: gray;
-  }
-  .post_form label:hover,
-  .post_form label:hover ~ label,
-  .post_form input[type='radio']:checked ~ label{
-    color: #ffcc00;
-  }
-
+.post_form{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+.post_form input[type='radio']{
+  display: none;
+}
+.post_form label{
+  position: relative;
+  padding: 10px 10px 0;
+  color: gray;
+  cursor: pointer;
+  font-size: 30px; /*星の大きさを変更するときはここ*/
+}
+.post_form label .text{
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  text-align: center;
+  font-size: 9px; /*星の上の説明書きの大きさを変更するときはここ*/
+  color: gray;
+}
+.post_form label:hover,
+.post_form label:hover ~ label,
+.post_form input[type='radio']:checked ~ label{
+  color: #ffcc00;
+}
 
 /*　以下一覧ページの星用のCSS　*/
 
-  .star-rating {
-    position: relative;
-    display: inline-block;
-    width: 5em;
-    height: 1em;
-    font-size: 25px;
-  }
-  .star-rating-front {
-    display: inline-block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    color: #ffcc33;
-  }
-  .star-rating-back {
-    display: inline-block;
-    color: #ccc;
-    
-  }
+/* ヘッダー要素の修正 */
 
-  .title-container{
-    text-align: center;
-  }
+.header-all {
+  position: relative; /* ヘッダーを相対位置にする */
+  z-index: 10; /* ヘッダーを最前面に表示 */
+  background-color: #fff; /* ヘッダーの背景色 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* ヘッダーに影を追加 */
+}
 
-  h1{
-    width: center;
-    background-color: #003366;
-    color: #fff;
-    padding: 15px 20px;
-    display: flex;
-    text-align: center;
+p{
+  width: center;
+  background-color: #003366;
+  color: #fff;
+  padding: 15px 20px;
+  display: flex;
+  text-align: center;
+  font-size: 50px
 
-  }
+}
+.aa{
+  width: center;
+  background-color: #003366;
+  color: #fff;
+  padding: 15px 20px;
+  display: flex;
+  text-align: center;
+  font-size: 50px
 
-  h2{
-    width: center;
-    color: #050505;
-    padding: 15px 20px;
-    display: flex;
-    text-align: center;
+}
 
-  }
 
-  h3{
-    width: center;
-    background-color: #338be4;
-    color: #050505;
-    padding: 15px 20px;
-    display: flex;
-    text-align: center;
+h1{
+  width: center;
+  background-color: #003366;
+  color: #fff;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: center;
+  font-size: 30px
 
-  }
+}
 
+h2{
+  width: center;
+  color: #050505;
+  padding: 15px 20px;
+  display: flex;
+  text-align: center;
+
+}
+
+h3{
+  width: center;
+  background-color: #003366;
+  color:#fff;
+  padding: 15px 20px;
+  display: flex;
+  text-align: center;
+  font-size: 30px
+
+}
+
+.back-container{
+  text-align: center;
+  border-radius: 4px;
+  box-shadow: 0 20px 28px rgba(0, 0, 0, 0.1);
+  height: 700px;
+  position: relative;
+  z-index: 0; /* 背景が他の要素より下になるよう設定 */
+
+}
+
+.title-container{
+  text-align: center;
+  border-radius: 4px;
+  background-color: #fdfdfd;
+  box-shadow: 0 20px 28px rgba(0, 0, 0, 0.1);
+
+}
+
+
+.star-rating {
+  position: relative;
+  display: inline-block;
+  width: 5em;
+  height: 1em;
+  font-size: 25px;
+}
+.star-rating-front {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  color: #ffcc33;
+}
+.star-rating-back {
+  display: inline-block;
+  color: #ccc;
   
+}
+
+.tweets-container{
+  width: 1000px;
+  height: 5150px;
+  background-color: #003366;
+  padding-left: 200px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.tweet{
+  background-color: #ffffff;
+  border-radius: 30px;
+  width: 800px;
+  margin: 50px 0px;
+  height: 490px;
+  box-sizing: border-box;
+
+}
+
+.tweet-all{
+  max-width: 800px;
+  padding-top: 30px;
+}
+
+.custom-link.schedule-link {
+  font-size: 24px; /* 文字の大きさを変更 */
+  font-weight: bold; /* 文字を太くする（任意） */
+  padding: 10px 15px; /* 内側の余白を追加 */
+  text-decoration: none; /* 下線を削除（任意） */
+}
+
+.custom-link.new-post-link {
+  font-size: 24px; /* 文字の大きさを変更 */
+  font-weight: bold; /* 文字を太くする（任意） */
+  padding: 10px 15px; /* 内側の余白を追加 */
+  text-decoration: none; /* 下線を削除（任意） */
+}
+
+.custom-link.lesson-link {
+  font-size: 24px; /* 文字の大きさを変更 */
+  font-weight: bold; /* 文字を太くする（任意） */
+  padding: 10px 15px; /* 内側の余白を追加 */
+  text-decoration: none; /* 下線を削除（任意） */
+}
+
+.custom-button.logout-button {
+  font-size: 24px; /* 文字の大きさを変更 */
+  font-weight: bold; /* 文字を太くする（任意） */
+  padding: 10px 15px; /* 内側の余白を追加 */
+  text-decoration: none; /* 下線を削除（任意） */
+}
+
+.custom-link.signup-link {
+  font-size: 24px; /* 文字の大きさを変更 */
+  font-weight: bold; /* 文字を太くする（任意） */
+  padding: 10px 15px; /* 内側の余白を追加 */
+  text-decoration: none; /* 下線を削除（任意） */
+}
+
+.custom-link.login-link {
+  font-size: 24px; /* 文字の大きさを変更 */
+  font-weight: bold; /* 文字を太くする（任意） */
+  padding: 10px 15px; /* 内側の余白を追加 */
+  text-decoration: none; /* 下線を削除（任意） */
+}
+
+.main-container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.box {
+  width: auto;
+  background-color: #ffffffc9;
+  border-radius: 50px;
+  padding: 50px;
+  margin-top: 100px;
+}
+
+.ice-container {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+
+.ice-box {
+  width: 500px;
+  background-color: #ffffffc9;
+  border-radius: 50px;
+  padding: 50px;
+  margin-top: 100px;
+}
+
+
+.submit {
+  text-align: center;
+}
+
+
+.img-frame{
+  position: relative;
+  width: 100%;
+  height: 84.4%;
+  overflow: hidden;
+  margin-top: -50px;
+}
+
+ .img-01, .img-02, .img-03, .img-04, .img-05{
+  position: absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+ }
+ .img-01{
+  animation: slide-animation-01 12s infinite;
+ }
+ .img-02{
+  animation: slide-animation-02 12s infinite;
+ }
+ .img-03{
+  animation: slide-animation-03 12s infinite;
+ }
+ .img-04{
+  animation: slide-animation-03 12s infinite;
+ }
+ .img-05{
+  animation: slide-animation-03 12s infinite;
+ }
+
+
+ @keyframes slide-animation-01 {
+  0% {opacity: 1; transform: scale(1.0);}
+  30% {opacity: 1;}
+  40% {opacity: 0; transform: scale(1.15);}
+  90% {opacity: 0}
+ 100% {opacity: 1; transform: scale(1.0);}
+ }
+ @keyframes slide-animation-02 {
+  0% {opacity: 0;}
+  30% {opacity: 0; transform: scale(1.1);}
+  40% {opacity: 1;}
+  60% {opacity: 1;}
+  70% {opacity: 0; transform: scale(1.0);}
+ 100% {opacity: 0;}
+ }
+ @keyframes slide-animation-03 {
+  0% {opacity: 0;}
+  60% {opacity: 0; transform: scale(1.0);}
+  70% {opacity: 1;}
+  90% {opacity: 1;}
+ 100% {opacity: 0; transform: scale(1.1);}
+ }
+ @keyframes slide-animation-04 {
+  0% {opacity: 1; transform: scale(1.0);}
+  30% {opacity: 1;}
+  40% {opacity: 0; transform: scale(1.15);}
+  90% {opacity: 0}
+ 100% {opacity: 1; transform: scale(1.0);}
+ }
+ @keyframes slide-animation-05 {
+  0% {opacity: 1; transform: scale(1.0);}
+  30% {opacity: 1;}
+  40% {opacity: 0; transform: scale(1.15);}
+  90% {opacity: 0}
+ 100% {opacity: 1; transform: scale(1.0);}
+ }
+ 

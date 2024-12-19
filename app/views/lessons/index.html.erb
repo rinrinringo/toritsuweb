@@ -1,44 +1,35 @@
-<h1>授業の評価</h1>
-<h3>一覧ページ</h3>
+<h1>一覧ページ</h1>
+	
+<div class="ice-container">
+  <div class="ice-content">
+    <%= form_tag({controller:"lessons",action:"index"}, method: :get ,class: "form1") do %>
+      <%= text_field_tag :search %>
+      <%= submit_tag '検索する'  %>
+    <% end %>
 
-<h3>投稿を検索</h3>
- <%= form_tag({controller:"lessons",action:"index"}, method: :get) do %>
-   <%= text_field_tag :search %>
-   <%= submit_tag '検索する'  %>
-<% end %>
+    <%= link_to "新規投稿へ", new_lesson_path %>
+    <% @lessons.each do |t| %>
+      <div class="ice-box">
 
-<%= link_to "新規投稿へ", new_lesson_path %>
-<div class="lessons-container">
-  <% @lessons.each do |t| %>
-    <div class="lesson">
-    
-      <%= t.jugyou %>
-      <%= t.youbi %>
-      <%= t.repo %>
-      <%= link_to "詳細へ", lesson_path(t.id) %>
-      <%= button_to "削除する", lesson_path(t.id), method: :delete %>
-    </div>
-
-    <div>
-    <h2>単位の取りやすさ：
-    <span class="star-rating">
-       <span class="star-rating-front" style="width: <%= getPercent(t.overall) %>%;">★★★★★</span>
-       <span class="star-rating-back">★★★★★</span>
-    </span> 
-    </h2>
-    </div>
-    
-    
-    <!--- 授業レベルの星の部分 ---------->
-    <div>
-    <h2>分かりやすさ：
-    <span class="star-rating">
-       <span class="star-rating-front" style="width: <%= getPercent(t.level) %>%;">★★★★★</span>
-       <span class="star-rating-back">★★★★★</span>
-    </span>
-    </h2>
-    </div>
-  <% end %>
+        <%= t.jugyou %>
+        <%= t.youbi %>
+        <%= t.repo %>
+        <%= link_to "詳細へ", lesson_path(t.id) %>
+        <%= button_to "削除する", lesson_path(t.id), method: :delete %>
+        <h4>単位の取りやすさ</h4>
+        
+        <span class="star-rating">
+          <span class="star-rating-front" style="width: <%= getPercent(t.overall) %>%;">★★★★★</span>
+          <span class="star-rating-back">★★★★★</span>
+        </span>
+        <br>
+        <br>
+        <h4>分かりやすさ</h4>
+        <span class="star-rating">
+          <span class="star-rating-front" style="width: <%= getPercent(t.level) %>%;">★★★★★</span>
+          <span class="star-rating-back">★★★★★</span>
+        </span>
+      </div>
+    <% end %>
+  </div>
 </div>
-
-<%= link_to "授業時間割一覧へ", tweets_path %>

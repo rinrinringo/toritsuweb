@@ -3,15 +3,22 @@ class TweetsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
   
   def index
-    if params[:search] != nil && params[:search] != ''
-      #部分検索かつ複数検索
+    if params[:search].present?
+      # 検索ワードがある場合
       search = params[:search]
-      @tweets = Tweet.joins(:user).where("gakubu LIKE ? OR gakunen LIKE ? OR gakki LIKE ? ", "%#{search}%","%#{search}%","%#{search}%")
+      @tweets = Tweet.where("gakubu LIKE ? OR gakunen LIKE ? OR gakki LIKE ? OR memo LIKE ?", 
+      "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
+      @rank_tweets = @tweets.left_joins(:likes)
+      .group(:id)
+      .order('COUNT(likes.id) DESC')
+      .limit(10)
     else
+      # 検索ワードがない場合
+      @rank_tweets = nil
       @tweets = Tweet.all
-      @rank_tweets = Tweet.all.sort {|a,b| b.liked_users.count <=> a.liked_users.count}.first(5)
     end
-
+  
+    # タグ検索の処理
     if params[:tag_ids]
       @tweets = []
       params[:tag_ids].each do |key, value|

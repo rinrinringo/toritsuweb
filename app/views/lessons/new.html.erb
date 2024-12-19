@@ -1,71 +1,75 @@
-<h1>(授業情報)</h1>
 <h3>新規投稿ページ</h3>
-<%= form_for @lesson do |f| %>
 
-# データ型がstringで自由記述の入力フォーム
-  <div class="field">
-    <%= f.label :授業名 %>
-    <%= f.text_field :jugyou, :size => 30 %>
+<div class="main-container">
+	<div class="box">
+		<div class="layout">
+      <%= form_for @lesson do |f| %>
+
+        <div class="field">
+          <%= f.label :授業名 %>
+          <%= f.text_field :jugyou, :size => 30 %>
+        </div>
+
+        <div class="field">
+          <%= f.label :曜日  %>
+          <%= f.select :youbi, 
+          [["月", "月"], 
+          ["火", "火"], 
+          ["水", "水"],
+          ["木", "木"],
+          ["金", "金"], 
+          ["金", "金"], 
+          ["日", "日"]], include_blank: "選択して下さい" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :口コミ  %> 
+          <%= f.text_area :repo, :size => "30x2" %>
+        </div>
+
+        <h5>単位の取りやすさ</h5>
+          <div class="post_form">
+              <%= f.radio_button :overall, 5 ,id: 'star1'%>
+              <label for="star1"><span class="text">最高</span>★</label>
+          
+              <%= f.radio_button :overall, 4 ,id: 'star2'%>
+              <label for="star2"><span class="text">良い</span>★</label>
+          
+              <%= f.radio_button :overall, 3 ,id: 'star3'%>
+              <label for="star3"><span class="text">普通</span>★</label>
+          
+              <%= f.radio_button :overall, 2 ,id: 'star4'%>
+              <label for="star4"><span class="text">悪い</span>★</label>
+          
+              <%= f.radio_button :overall, 1 ,id: 'star5'%>
+              <label for="star5"><span class="text">最悪</span>★</label>
+          </div>
+      <!--- 総合評価の星の部分終わり------->
+
+
+      <!--- 授業レベルの星の部分 ------------>
+          <h5>分かりやすさ</h5>
+          <div class="post_form">
+              <%= f.radio_button :level,  5 ,id: 'star6'%>
+              <label for="star6"><span class="text">分かりやすい</span>★</label>
+          
+              <%= f.radio_button :level,  4 ,id: 'star7'%>
+              <label for="star7"><span class="text">やや分かりやすい</span>★</label>
+          
+              <%= f.radio_button :level, 3 ,id: 'star8'%>
+              <label for="star8"><span class="text">普通</span>★</label>
+          
+              <%= f.radio_button :level , 2 ,id: 'star9'%>
+              <label for="star9"><span class="text">やや分かりにくい</span>★</label>
+          
+              <%= f.radio_button :level , 1 ,id: 'star10'%>
+              <label for="star10"><span class="text">分かりにくい</span>★</label>
+          </div>
+
+        <%= f.submit "投稿する" %>
+      <% end %>
+
+      <%= link_to "一覧に戻る", lessons_path %>
+    </div>
   </div>
-
-# データ型がstringで選択式の入力フォーム
-  <div class="field">
-    <%= f.label :曜日  %>
-    <%= f.select :youbi, 
-    [["月", "月"], 
-    ["火", "火"], 
-    ["水", "水"],
-    ["木", "木"],
-    ["金", "金"], 
-    ["金", "金"], 
-    ["日", "日"]], include_blank: "選択して下さい" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :口コミ  %>
-    <%= f.text_area :repo, :size => "30x2" %>
-  </div>
-
-  <h5>単位の取りやすさ</h5>
-     <div class="post_form">
-        <%= f.radio_button :overall, 5 ,id: 'star1'%>
-        <label for="star1"><span class="text">最高</span>★</label>
-    
-        <%= f.radio_button :overall, 4 ,id: 'star2'%>
-        <label for="star2"><span class="text">良い</span>★</label>
-    
-        <%= f.radio_button :overall, 3 ,id: 'star3'%>
-        <label for="star3"><span class="text">普通</span>★</label>
-    
-        <%= f.radio_button :overall, 2 ,id: 'star4'%>
-        <label for="star4"><span class="text">悪い</span>★</label>
-    
-        <%= f.radio_button :overall, 1 ,id: 'star5'%>
-        <label for="star5"><span class="text">最悪</span>★</label>
-     </div>
-<!--- 総合評価の星の部分終わり------->
-
-
-<!--- 授業レベルの星の部分 ------------>
-    <h5>分かりやすさ</h5>
-     <div class="post_form">
-        <%= f.radio_button :level,  5 ,id: 'star6'%>
-        <label for="star6"><span class="text">分かりやすい</span>★</label>
-    
-        <%= f.radio_button :level,  4 ,id: 'star7'%>
-        <label for="star7"><span class="text">やや分かりやすい</span>★</label>
-    
-        <%= f.radio_button :level, 3 ,id: 'star8'%>
-        <label for="star8"><span class="text">普通</span>★</label>
-    
-        <%= f.radio_button :level , 2 ,id: 'star9'%>
-        <label for="star9"><span class="text">やや分かりにくい</span>★</label>
-    
-        <%= f.radio_button :level , 1 ,id: 'star10'%>
-        <label for="star10"><span class="text">分かりにくい</span>★</label>
-     </div>
-
-  <%= f.submit "投稿する" %>
-<% end %>
-
-<%= link_to "一覧に戻る", lessons_path %>
+</div>

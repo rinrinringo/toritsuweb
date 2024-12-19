@@ -3,69 +3,103 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 .tweet_form{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    width: 300px;
-    margin: 30px;
-  }
-  .name_field{
-    width: 200px;
-    margin-bottom: 30px;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 300px;
+  margin: 30px;
+}
+.name_field{
+  width: 200px;
+  margin-bottom: 30px;
+}
 
 /*　以下新規投稿ページの星用のCSS　*/
 
-  .post_form{
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: flex-end;
-  }
-  .post_form input[type='radio']{
-    display: none;
-  }
-  .post_form label{
-    position: relative;
-    padding: 10px 10px 0;
-    color: gray;
-    cursor: pointer;
-    font-size: 30px; /*星の大きさを変更するときはここ*/
-  }
-  .post_form label .text{
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    text-align: center;
-    font-size: 9px; /*星の上の説明書きの大きさを変更するときはここ*/
-    color: gray;
-  }
-  .post_form label:hover,
-  .post_form label:hover ~ label,
-  .post_form input[type='radio']:checked ~ label{
-    color: #ffcc00;
-  }
-
+.post_form{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+.post_form input[type='radio']{
+  display: none;
+}
+.post_form label{
+  position: relative;
+  padding: 10px 10px 0;
+  color: gray;
+  cursor: pointer;
+  font-size: 30px; /*星の大きさを変更するときはここ*/
+}
+.post_form label .text{
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  text-align: center;
+  font-size: 9px; /*星の上の説明書きの大きさを変更するときはここ*/
+  color: gray;
+}
+.post_form label:hover,
+.post_form label:hover ~ label,
+.post_form input[type='radio']:checked ~ label{
+  color: #ffcc00;
+}
 
 /*　以下一覧ページの星用のCSS　*/
 
-  .star-rating {
-    position: relative;
-    display: inline-block;
-    width: 5em;
-    height: 1em;
-    font-size: 25px;
-  }
-  .star-rating-front {
-    display: inline-block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    color: #ffcc33;
-  }
-  .star-rating-back {
-    display: inline-block;
-    color: #ccc;
-    
-  }
+.star-rating {
+  position: relative;
+  display: inline-block;
+  width: 5em;
+  height: 1em;
+  font-size: 25px;
+}
+.star-rating-front {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  color: #ffcc33;
+}
+.star-rating-back {
+  display: inline-block;
+  color: #ccc;
+  
+}
+
+/* 検索フォーム */
+.form1 {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.form1 input[type="text"] {
+  padding: 10px;
+  width: 60%;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.form1 input[type="submit"] {
+  padding: 10px 15px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.form1 input[type="submit"]:hover {
+  background-color: #2980b9;
+}
+
+
+
+

@@ -2,26 +2,31 @@
 <html>
   <head>
     <title>Risyuu</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <script src="https://kit.fontawesome.com/fda4c4a930.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <link rel="stylesheet" href="tweets.scss>
   </head>
 
 <body>
  <header>
-  <h1>都立大情報局</h1>
-  <div class="header-list">
-   <ul>
+ <div class="header-all">
+    <div class="header-1">
+    <%= link_to image_tag("icon.jpg", width: "85", height: "85"), tweets_path %>
+    </div>
+    <div class="header-2">
+    <%= link_to "時間割一覧", tweets_path, class: "custom-link schedule-link" %>
+    <%= link_to "新規投稿", new_tweet_path, class: "custom-link new-post-link" %>
+    <%= link_to "授業評価一覧", lessons_path, class: "custom-link lesson-link" %>
+
     <% if user_signed_in? %>
-     <li><%= button_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+      <%= button_to 'ログアウト', destroy_user_session_path, method: :delete, class: "custom-button logout-button" %>
     <% else %>
-     <li><%= link_to "新規登録", new_user_registration_path %></li>
-     <li><%= link_to "ログイン", new_user_session_path %></li>
-    <% end %>
-   </ul>
+      <%= link_to "新規登録", new_user_registration_path, class: "custom-link signup-link" %>
+      <%= link_to "ログイン", new_user_session_path, class: "custom-link login-link" %>
+      <% end %>
+    </div>
   </div>
  </header>
  <main>
